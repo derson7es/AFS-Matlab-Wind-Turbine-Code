@@ -4,9 +4,9 @@ function EnviromentSimulation(action)
 
 % ABOUT AUTHOR:
 % Code developed by Anderson Francisco Silva, a student at the University 
-% of São Paulo, in defense of his master's degree in Naval and Oceanic 
-% Engineering in 2025. Reviewed and supervised by Professor Dr. Helio 
-% Mitio Morishita. Code developed in Matlab 2022b.
+% of São Paulo, in defense of his master's degree in Naval and Ocean 
+% Engineering in 2025. Master's dissertation title: Control of wind turbine 
+% based on effective wind speed estimation / Silva, Anderson Francisco -- São Paulo, 2025.
 
 % ABOUT UPDATES AND VERSIONS:
 % Code Version: This code is in version 04 of July 2025.
@@ -22,7 +22,7 @@ global s who t it it_c it_OS SimulationEnvironment WindTurbine_data Sensor WindT
 
 who.VersionCode = 'Version 04082025: version updated and saved on August 04, 2025.';
 s.VersionCode = who.VersionCode;
-who.AboutCode = 'Code developed by Anderson Francisco Silva and reviewed by Dr. Helio Mitio Morishita. Developed in Matlab 2024b.';
+who.AboutCode = 'Code developed by Anderson Francisco Silva. Developed in Matlab 2024b.';
 s.AboutCode = who.AboutCode;
 
 
@@ -973,243 +973,6 @@ elseif strcmp(action, 'logical_instance_06')
     who.efficiency = 'Energy production efficiency, in [%].';    
     s.efficiency = ( s.E_eletrica_MWh / s.E_aerodinamica_MWh ) * 100 ;
 
-
-    %#############################
-    % ---- Salving values in Matlab file ----   
-    Time_ws = s.Time_ws;
-    Uews_rt = s.Uews_rt;
-    Time = s.Time;
-    V_meanHub_0 = s.V_meanHub_0;
-    Vews = s.Vews;
-    Uews = s.Uews;
-    VCsi = s.VCsi;
-    WindSpeed_Hub = s.WindSpeed_Hub;
-    Vw_10SWL = s.Vw_10SWL;
-    Uews_full = s.Uews_full;
-    Uews_ref = s.Uews_ref;
-    Vews_est = s.Vews_est;
-    Beta = s.Beta;
-    Beta_dot = s.Beta_dot;
-    Tg = s.Tg;
-    Tg_dot = s.Tg_dot ;
-    OmegaR = s.OmegaR;
-    Lambda = s.Lambda;
-    Cp = s.Cp;
-    Ta = s.Ta ;
-    Pa = s.Pa;
-    Ct = s.Ct;
-    Fa = s.Fa;
-    Beta_measured = s.Beta_measured ;
-    Betad_op = s.Betad_op;
-    Beta_d = s.Beta_d ;
-    Beta_filtered = s.Beta_filtered ;
-    Ta_est = s.Ta_est;
-    OmegaR_est = s.OmegaR_est ;
-    Tg_filtered = s.Tg_filtered ;
-    Tg_measured = s.Tg_measured;
-    Tgd_op = s.Tgd_op  ;    
-    Tg_d = s.Tg_d ;
-    Beta_dDot = s.Beta_dDot;  
-    Pe_measured = s.Pe_measured ;
-    eta_elect = s.eta_elect ;
-    eta_cap = s.eta_cap ;   
-    Fa_est = s.Fa_est ;
-    Erro_TimeEst = s.Erro_TimeEst;
-    mean_TimeEst = s.mean_TimeEst;
-    mean_abs_err_TimeEst = s.mean_abs_err_TimeEst;
-    RMSE_TimeEst = s.RMSE_TimeEst;
-    std_err_TimeEst = s.std_err_TimeEst;
-    if s.Option06f6 == 1
-        Uews_comp = s.Uews_rt ;
-    else
-        Uews_comp = s.Uews_sp ;
-    end    
-    if s.Option01f8 == 2
-        Fa_estPS = s.Fa_estPS ; % Peak Shaving
-    else
-        Fa_estPS = s.Fa_est;    
-    end
-    OmegaR_measured = s.OmegaR_measured;
-    OmegaR_filtered = s.OmegaR_filtered;
-    OmegaRd_op = s.OmegaRd_op;
-    E_aerodinamica_MWh = s.E_aerodinamica_MWh;
-    E_eletrica_MWh = s.E_eletrica_MWh;
-    efficiency = s.efficiency;    
-    E_aerodinamica_Wh = s.E_aerodinamica_Wh;
-    E_aerodinamica_MWh = s.E_aerodinamica_MWh;
-    E_eletrica_Wh = s.E_eletrica_Wh;
-    E_eletrica_MWh = s.E_eletrica_MWh;
-    efficiency = s.efficiency;
-    BetaDot_max = s.BetaDot_max; 
-    TgDot_max = s.TgDot_max;  
-    eta_gb = s.eta_gb;
-    Tg_dDot = s.Tg_dDot;
-    OmegaRef = s.OmegaRef;
-    Kp_piBeta = s.Kp_piBeta;
-    Ki_piBeta = s.Ki_piBeta;
-    AA_Beta = s.AA_Beta;
-    BB_Beta = s.BB_Beta;
-    tau_Beta = s.tau_Beta;
-
-    save('TesteOffshore_FSKF15_Comp.mat','Time_ws','Time','V_meanHub_0','Vews', 'Uews','Uews_ref','VCsi','WindSpeed_Hub','Vw_10SWL','Vews_est', 'Beta', 'Beta_dot', 'Tg', 'Tg_dot', 'OmegaR', 'Lambda','Cp', 'Ta', 'Pa', 'Ct', 'Fa', 'Beta_measured', 'Betad_op','Beta_d', 'Beta_filtered', 'Ta_est', 'OmegaR_est','Tg_filtered','Tg_measured','Tgd_op','Tg_d','Beta_dDot','Pe_measured','eta_elect','eta_cap','Fa_est','Uews_rt','Uews_full','Erro_TimeEst','mean_TimeEst','mean_abs_err_TimeEst','RMSE_TimeEst','std_err_TimeEst','Uews_comp','Fa_estPS','OmegaR_measured','OmegaR_filtered','OmegaRd_op','mean_TimeEst','std_err_TimeEst','E_aerodinamica_Wh','E_aerodinamica_MWh','E_eletrica_Wh','E_eletrica_MWh','efficiency','BetaDot_max','TgDot_max','eta_gb','Tg_dDot','OmegaRef','Kp_piBeta','Ki_piBeta','AA_Beta','BB_Beta','tau_Beta');
-        % clc; close all; clear all; clear global;    
-
-        % OFFSHORE WIND TURBINE: Floating Wind Turbine with Spar Buoy Platform by Modelling Betti (2012)
-        WindSpeed_BP = s.WindSpeed_BP;
-        WindSpeed_BN = s.WindSpeed_BN;
-        WindSpeed_BT = s.WindSpeed_BT;
-
-        h_off = s.h_off;
-        Xwa_i = s.Xwa_i;
-        WaterDepthVector_i = s.WaterDepthVector_i;
-        OmegaWa_n = s.OmegaWa_n;
-        Kwa_n = s.Kwa_n;
-        Phi_wa_n = s.Phi_wa_n;
-        Vwa_iu = s.Vwa_iu;
-        Vwa_iv = s.Vwa_iv;
-        Vwa_iw = s.Vwa_iw;    
-        Awa_iu = s.Awa_iu;
-        Awa_iv = s.Awa_iv;
-        Awa_iw = s.Awa_iw; 
-
-        Qwe_surge = s.Qwe_surge;
-        Qwe_heave = s.Qwe_heave;
-        Qwe_pitch = s.Qwe_pitch;    
-
-        hw_off = s.hw_off;
-        DeltaHsub_off = s.DeltaHsub_off;
-        Vg_off = s.Vg_off;
-        hsub_off = s.hsub_off ;
-        Vbt_off = s.Vbt_off;
-        hpt_off = s.hpt_off;
-        DSbott_CSoff = s.DSbott_CSoff;
-        DG_off = s.DG_off; 
-        Qb_surge = s.Qb_surge;
-        Qb_heave = s.Qb_heave;
-        Qb_pitch = s.Qb_pitch;  
-
-        Vwind_in = s.Vwind_in;
-        Vwind_out = s.Vwind_out;
-        Delta_FAoff = s.Delta_FAoff; 
-        FA_off = s.FA_off;
-        FAN = s.FAN;
-        FAT = s.FAT;
-        Qwi_surge = s.Qwi_surge;
-        Qwi_heave = s.Qwi_heave;
-        Qwi_pitch = s.Qwi_pitch;
-
-        hi_op_off = s.hi_op_off ;
-        Vwater_x = s.Vwater_x;
-        VwaterDot_x = s.VwaterDot_x;
-        Vwater_y = s.Vwater_y;
-        VwaterDot_y = s.VwaterDot_y;
-        Vwater_Vbottomfloater_x = s.Vwater_Vbottomfloater_x; 
-        Vwater_Vbottomfloater_y = s.Vwater_Vbottomfloater_y; 
-        V_parallel = s.V_parallel;
-        V_perpendicular = s.V_perpendicular;
-        Vdot_perpendicular = s.Vdot_perpendicular;
-        Vbottomfloater_perpendicular = s.Vbottomfloater_perpendicular ;
-        Cdg_perpendicular = s.Cdg_perpendicular;    
-        Cdg_parallel = s.Cdg_parallel;
-        Qh_surge_i = s.Qh_surge_i ;
-        Qh_heave_i = s.Qh_heave_i ;
-        Qh_surge = s.Qh_surge ;
-        Qh_heave = s.Qh_heave ;
-        Qh_pitch = s.Qh_pitch ;
-        Qwa_surge_i = s.Qwa_surge_i ;
-        Qwa_heave_i = s.Qwa_heave_i ;
-        Qwa_surge = s.Qwa_surge ;
-        Qwa_heave = s.Qwa_heave ;
-        Qwa_pitch = s.Qwa_pitch ;
-
-        xml0_Betti = s.xml0_Betti;
-        yml0_Betti = s.yml0_Betti;
-        xml0B_Betti = s.xml0B_Betti;
-        yml0B_Betti = s.yml0B_Betti;
-        xml0_off = s.xml0_off;
-        yml0_off = s.yml0_off;
-        Theta_m_Chains12 = s.Theta_m_Chains12;
-        CatenaryShape_a12 = s.CatenaryShape_a12;
-        lmean_off = s.lmean_off;
-        Delta_Lchain12 = s.Delta_Lchain12;
-        x_catenary12 = s.x_catenary12;
-        y_catenary12 = s.y_catenary12;
-        F_chain12 = s.F_chain12;
-        Fmlx_off = s.Fmlx_off;
-        Fmly_off = s.Fmly_off;
-        Qfm_surge = s.Qfm_surge;
-        Qfm_heave = s.Qfm_heave;  
-        xml0_Boff = s.xml0_Boff;
-        yml0_Boff = s.yml0_Boff;
-        Theta_m_Chains3 = s.Theta_m_Chains3;
-        CatenaryShape_a3 = s.CatenaryShape_a3;
-        lmean_Boff = s.lmean_Boff;
-        Delta_Lchain3 = s.Delta_Lchain3;
-        x_catenary3 = s.x_catenary3;
-        y_catenary3 = s.y_catenary3;
-        F_chain3 = s.F_chain3;
-        Fmlx_Boff = s.Fmlx_Boff;
-        Fmly_Boff = s.Fmly_Boff;
-        Qbm_surge = s.Qbm_surge;
-        Qbm_heave = s.Qbm_heave;         
-        Qm_surge = s.Qm_surge;
-        Qm_heave = s.Qm_heave;
-        Qm_pitch = s.Qm_pitch;
-
-        MX = s.MX;
-        MY = s.MY;
-        Md = s.Md;
-        JJtot = s.JJtot;
-        Q_surge = s.Q_surge;
-        Q_heave = s.Q_heave;
-        Q_pitch = s.Q_pitch; 
-
-        PNoiseSurge_Ddot = s.PNoiseSurge_Ddot;  
-        Surge = s.Surge;
-        Surge_dot = s.Surge_dot;    
-        Surge_Ddot = s.Surge_Ddot;
-
-        PNoiseSway_Ddot = s.PNoiseSway_Ddot;
-        Sway = s.Sway; 
-        Sway_dot = s.Sway_dot; 
-        Sway_Ddot = s.Sway_Ddot;
-
-        PNoiseHeave_Ddot = s.PNoiseHeave_Ddot;
-        Heave = s.Heave;  
-        Heave_dot = s.Heave_dot; 
-        Heave_Ddot = s.Heave_Ddot; 
-
-        PNoiseRollAngle_Ddot = s.PNoiseRollAngle_Ddot;
-        Gama_RollAngle = s.Gama_RollAngle;
-        RollAngle = s.RollAngle; 
-        RollAngle_dot = s.RollAngle_dot; 
-        RollAngle_Ddot = s.RollAngle_Ddot;
-
-        PNoisePitchAngle_Ddot = s.PNoisePitchAngle_Ddot;
-        Gama_PitchAngle = s.Gama_PitchAngle; 
-        PitchAngle = s.PitchAngle; 
-        PitchAngle_dot= s.PitchAngle_dot;
-        PitchAngle_Ddot = s.PitchAngle_Ddot;
-
-        PNoiseYawAngle_Ddot = s.PNoiseYawAngle_Ddot;
-        Gama_YawAngle = s.Gama_YawAngle;
-        YawAngle = s.YawAngle; 
-        YawAngle_dot = s.YawAngle_dot; 
-        YawAngle_Ddot = s.YawAngle_Ddot;
-
-        C_Hydrostatic = s.C_Hydrostatic;
-        C_Lines = s.C_Lines;
-        B_Radiation = s.B_Radiation;
-        B_Viscous = s.B_Viscous; 
-        I_mass = s.I_mass; 
-        A_Radiation = s.A_Radiation;      
-        Option01f4 = 3; %  Plot  
-        %
-        save('TesteOffshore15_Comp.mat','WindSpeed_BP','WindSpeed_BN','WindSpeed_BT','h_off','Xwa_i','WaterDepthVector_i','OmegaWa_n','Kwa_n','Phi_wa_n','Vwa_iu','Vwa_iv','Vwa_iw','Awa_iu','Awa_iv','Awa_iw','PNoiseSurge_Ddot','Surge','PNoiseSway_Ddot','Sway','Sway_dot','Sway_Ddot','PNoiseHeave_Ddot','Heave','PNoiseRollAngle_Ddot','RollAngle','RollAngle_dot','RollAngle_Ddot','PNoisePitchAngle_Ddot','PitchAngle','PNoiseYawAngle_Ddot','YawAngle','YawAngle_dot','YawAngle_Ddot','Qwe_surge','Qwe_heave','Qwe_pitch','hw_off','DeltaHsub_off','Vg_off','hsub_off','Vbt_off','hpt_off','DSbott_CSoff','DG_off','Qb_surge','Qb_heave','Qb_pitch','Vwind_in','Vwind_out','Delta_FAoff','FA_off','FAN','FAT','Qwi_surge','Qwi_heave','Qwi_pitch','hi_op_off','Vwater_x','VwaterDot_x','Vwater_y','VwaterDot_y','Vwater_Vbottomfloater_x','Vwater_Vbottomfloater_y','V_parallel','V_perpendicular','Vdot_perpendicular','Vbottomfloater_perpendicular','Cdg_perpendicular','Cdg_parallel','Qh_surge_i','Qh_heave_i','Qh_surge','Qh_heave','Qh_pitch','Qwa_surge_i','Qwa_heave_i','Qwa_surge','Qwa_heave','Qwa_pitch','xml0_Betti','yml0_Betti','xml0B_Betti','yml0B_Betti','xml0_off','yml0_off','Theta_m_Chains12','CatenaryShape_a12','lmean_off','Delta_Lchain12','x_catenary12','y_catenary12','F_chain12','Fmlx_off','Fmly_off','Qfm_surge','Qfm_heave','xml0_Boff','yml0_Boff','Theta_m_Chains3','CatenaryShape_a3','lmean_Boff','Delta_Lchain3','x_catenary3','y_catenary3','F_chain3','Fmlx_Boff','Fmly_Boff','Qbm_surge','Qbm_heave','Qm_surge','Qm_heave','Qm_pitch','MX','MY','Md','JJtot','Q_surge','Q_heave','Q_pitch','Surge_dot','Surge_Ddot','Heave_dot','Heave_Ddot','PitchAngle_dot','PitchAngle_Ddot','C_Hydrostatic','C_Lines','B_Radiation','B_Viscous','I_mass','A_Radiation','Option01f4');
-        %  
-
-
-
     disp('Simulation complete! Use Logical Instance 07 to plot results.')    
 
 
@@ -1320,7 +1083,7 @@ elseif strcmp(action, 'logical_instance_07')
         PNoiseTg_Dot_comp = GeneratorTorqueSystem.PNoiseTg_Dot;        
         PNoiseBeta_Dot_comp = BladePitchSystem.PNoiseBeta_Dot; 
         PNoiseOmegaR_Ddot_comp = DriveTrainDynamics.PNoiseOmegaR_Ddot;
-        save('SameWind_WindDecreasingLinearly.mat','Time_ws','Time','V_meanHub_0','Uews_ref_comp','Vw_10SWL_comp','WindSpeed_Hub_comp','Uews_comp','PNoiseTg_Dot_comp','PNoiseBeta_Dot_comp','PNoiseOmegaR_Ddot_comp')
+        save('SameWind_FullSignal_15.mat','Time_ws','Time','V_meanHub_0','Uews_ref_comp','Vw_10SWL_comp','WindSpeed_Hub_comp','Uews_comp','PNoiseTg_Dot_comp','PNoiseBeta_Dot_comp','PNoiseOmegaR_Ddot_comp')
         %
     end
 
@@ -1334,6 +1097,7 @@ elseif strcmp(action, 'logical_instance_07')
         Uews_sp = s.Uews_sp;    
         Uews_rt = s.Uews_rt;  
         save('SameWind_FullSignal_15_offshore.mat','Time_ws','Time','WindField_Grid','Vm','Vm_Ugrid','V_meanHub_0','Uews_sp','Uews_rt')
+        % If you want to compare results with the same wind, save the wind and wind turbine system data to a file, e.g., "SameWind_FullSignal_15_offshore"
         %
     end    
 
@@ -1362,6 +1126,7 @@ elseif strcmp(action, 'logical_instance_07')
         PNoiseYawAngle_Ddot = s.PNoiseYawAngle_Ddot;
 
         save('SameWave_JONSWAP_Height6_Period10.mat','vf_Jonswap','vk_Jonswap','S_Jonswap','eta_Jonswap','eta_Jonswap_x2','eta_Jonswap_x3','Hs_ws','Tp_ws','df_sw','vt_sw','fraw_eta','Sraw_eta','fBin_eta','SBin_eta','PNoiseSurge_Ddot','PNoiseSway_Ddot','PNoiseHeave_Ddot','PNoiseRollAngle_Ddot','PNoisePitchAngle_Ddot','PNoiseYawAngle_Ddot');
+        % If you want to compare results with the same wave, save the wave data to a file, e.g., "SameWave_JONSWAP_Height6_Period10"
         %
     end
 
@@ -1520,8 +1285,8 @@ elseif strcmp(action, 'logical_instance_07')
         %
         save('TesteOffshore15_Comp.mat','WindSpeed_BP','WindSpeed_BN','WindSpeed_BT','h_off','Xwa_i','WaterDepthVector_i','OmegaWa_n','Kwa_n','Phi_wa_n','Vwa_iu','Vwa_iv','Vwa_iw','Awa_iu','Awa_iv','Awa_iw','PNoiseSurge_Ddot','Surge','PNoiseSway_Ddot','Sway','Sway_dot','Sway_Ddot','PNoiseHeave_Ddot','Heave','PNoiseRollAngle_Ddot','RollAngle','RollAngle_dot','RollAngle_Ddot','PNoisePitchAngle_Ddot','PitchAngle','PNoiseYawAngle_Ddot','YawAngle','YawAngle_dot','YawAngle_Ddot','Qwe_surge','Qwe_heave','Qwe_pitch','hw_off','DeltaHsub_off','Vg_off','hsub_off','Vbt_off','hpt_off','DSbott_CSoff','DG_off','Qb_surge','Qb_heave','Qb_pitch','Vwind_in','Vwind_out','Delta_FAoff','FA_off','FAN','FAT','Qwi_surge','Qwi_heave','Qwi_pitch','hi_op_off','Vwater_x','VwaterDot_x','Vwater_y','VwaterDot_y','Vwater_Vbottomfloater_x','Vwater_Vbottomfloater_y','V_parallel','V_perpendicular','Vdot_perpendicular','Vbottomfloater_perpendicular','Cdg_perpendicular','Cdg_parallel','Qh_surge_i','Qh_heave_i','Qh_surge','Qh_heave','Qh_pitch','Qwa_surge_i','Qwa_heave_i','Qwa_surge','Qwa_heave','Qwa_pitch','xml0_Betti','yml0_Betti','xml0B_Betti','yml0B_Betti','xml0_off','yml0_off','Theta_m_Chains12','CatenaryShape_a12','lmean_off','Delta_Lchain12','x_catenary12','y_catenary12','F_chain12','Fmlx_off','Fmly_off','Qfm_surge','Qfm_heave','xml0_Boff','yml0_Boff','Theta_m_Chains3','CatenaryShape_a3','lmean_Boff','Delta_Lchain3','x_catenary3','y_catenary3','F_chain3','Fmlx_Boff','Fmly_Boff','Qbm_surge','Qbm_heave','Qm_surge','Qm_heave','Qm_pitch','MX','MY','Md','JJtot','Q_surge','Q_heave','Q_pitch','Surge_dot','Surge_Ddot','Heave_dot','Heave_Ddot','PitchAngle_dot','PitchAngle_Ddot','C_Hydrostatic','C_Lines','B_Radiation','B_Viscous','I_mass','A_Radiation','Option01f4');
         %    
-        % TesteOffshoreFS15_Controle
-        % TesteOffshore15_SemC
+        % Run a simulation with compensation and save "TesteOffshore15_Comp"
+        % Run another simulation without compensation and save "TesteOffshore15_SemComp
     end
 
 

@@ -4,9 +4,9 @@ function WindTurbine_OffshoreAssembly_SparBuoyBetti2012(action)
 
 % ABOUT AUTHOR:
 % Code developed by Anderson Francisco Silva, a student at the University 
-% of São Paulo, in defense of his master's degree in Naval and Oceanic 
-% Engineering in 2025. Reviewed and supervised by Professor Dr. Helio 
-% Mitio Morishita. Code developed in Matlab 2022b.
+% of São Paulo, in defense of his master's degree in Naval and Ocean 
+% Engineering in 2025. Master's dissertation title: Control of wind turbine 
+% based on effective wind speed estimation / Silva, Anderson Francisco -- São Paulo, 2025.
 
 % ABOUT UPDATES AND VERSIONS:
 % Code Version: This code is in version 04 of August 2025.
@@ -1059,35 +1059,6 @@ elseif strcmp(action, 'logical_instance_06')
     s.dy(26) = s.YawAngle_Ddot ; 
 
 
-    if any(isnan(s.Surge)) || any(isinf(s.Surge))
-        fprintf('Parando simulação: valor inválido detectado em t = %.3f segundos.\n', t);
-        % % pause;  % Interrompe execução e abre prompt
-    end 
-    if any(isnan(s.Surge_dot)) || any(isinf(s.Surge_dot))
-        fprintf('Parando simulação: valor inválido detectado em t = %.3f segundos.\n', t);
-        % % pause;  % Interrompe execução e abre prompt
-    end     
-
-    if any(isnan(s.Heave)) || any(isinf(s.Heave))
-        fprintf('Parando simulação: valor inválido detectado em t = %.3f segundos.\n', t);
-        % pause;  % Interrompe execução e abre prompt
-    end 
-    if any(isnan(s.Heave_dot)) || any(isinf(s.Heave_dot))
-        fprintf('Parando simulação: valor inválido detectado em t = %.3f segundos.\n', t);
-        % pause;  % Interrompe execução e abre prompt
-    end 
-
-
-    if any(isnan(s.PitchAngle)) || any(isinf(s.PitchAngle))
-        fprintf('Parando simulação: valor inválido detectado em t = %.3f segundos.\n', t);
-        % pause;  % Interrompe execução e abre prompt
-    end 
-    if any(isnan(s.PitchAngle_dot)) || any(isinf(s.PitchAngle_dot))
-        fprintf('Parando simulação: valor inválido detectado em t = %.3f segundos.\n', t);
-        % pause;  % Interrompe execução e abre prompt
-    end 
-
-
     % Assign value to variable in specified workspace
     assignin('base', 's', s);
     assignin('base', 'who', who);
@@ -1491,20 +1462,6 @@ elseif strcmp(action, 'logical_instance_10')
     
 
 
-    if any(isnan(s.Qh_surge)) || any(isinf(s.Qh_surge))
-        fprintf('Parando simulação: valor inválido detectado em t = %.3f segundos.\n', t);
-        % pause;  % Interrompe execução e abre prompt
-    end  
-    if any(isnan(s.Qh_heave)) || any(isinf(s.Qh_heave))
-        fprintf('Parando simulação: valor inválido detectado em t = %.3f segundos.\n', t);
-        % pause;  % Interrompe execução e abre prompt
-    end
-    if any(isnan(s.Qh_pitch)) || any(isinf(s.Qh_pitch))
-        fprintf('Parando simulação: valor inválido detectado em t = %.3f segundos.\n', t);
-        % pause;  % Interrompe execução e abre prompt
-    end 
-
-
                     %###### The Wave Thrust force ###### 
                     
     % ------ The Wave Thrust force on cylinders --------- 
@@ -1526,20 +1483,6 @@ elseif strcmp(action, 'logical_instance_10')
     s.Qwa_pitch = sum( s.Qwa_surge_i .* s.Arm_BS_i .* s.Cosseno_PitchAngle ...
                   + s.Qwa_heave_i .* s.Arm_BS_i .* s.Sine_PitchAngle , 'omitnan') ;
 
-
-
-    if any(isnan(s.Qwa_surge)) || any(isinf(s.Qwa_surge))
-        fprintf('Parando simulação: valor inválido detectado em t = %.3f segundos.\n', t);
-        % pause;  % Interrompe execução e abre prompt
-    end  
-    if any(isnan(s.Qwa_heave)) || any(isinf(s.Qwa_heave))
-        fprintf('Parando simulação: valor inválido detectado em t = %.3f segundos.\n', t);
-        % pause;  % Interrompe execução e abre prompt
-    end
-    if any(isnan(s.Qwa_pitch)) || any(isinf(s.Qwa_pitch))
-        fprintf('Parando simulação: valor inválido detectado em t = %.3f segundos.\n', t);
-        % pause;  % Interrompe execução e abre prompt
-    end  
 
 
     % Assign value to variable in specified workspace
@@ -1834,20 +1777,6 @@ elseif strcmp(action, 'logical_instance_11')
     end
 
 
-    if any(isnan(s.Qm_surge)) || any(isinf(s.Qm_surge))
-        fprintf('Parando simulação: valor inválido detectado em t = %.3f segundos.\n', t);
-        % pause;  % Interrompe execução e abre prompt
-    end  
-    if any(isnan(s.Qm_heave)) || any(isinf(s.Qm_heave))
-        fprintf('Parando simulação: valor inválido detectado em t = %.3f segundos.\n', t);
-        % pause;  % Interrompe execução e abre prompt
-    end
-    if any(isnan(s.Qm_pitch)) || any(isinf(s.Qm_pitch))
-        fprintf('Parando simulação: valor inválido detectado em t = %.3f segundos.\n', t);
-        % pause;  % Interrompe execução e abre prompt
-    end      
-
-
 
     % Assign value to variable in specified workspace
     assignin('base', 's', s);
@@ -1912,54 +1841,6 @@ elseif strcmp(action, 'logical_instance_12')
     s.Heave_Ddot = (1/s.MY) * ( s.Q_heave - s.Md * s.Cosseno_PitchAngle * s.PitchAngle_dot^2 - s.Md * s.Sine_PitchAngle * s.PitchAngle_Ddot ) + s.PNoiseHeave_Ddot ;
 
 
-
-    % % ---- 4th Order Runge-Kutta Integration Methods of Differential Equations ------     
-    % s.yrk = [s.PitchAngle_dot; s.Surge_dot; s.Heave_dot]; % Initial solution
-    % s.dy_rk = @(y_rk) [ ( s.Q_pitch - (s.Md / s.MX) * s.Cosseno_PitchAngle * s.Q_surge ...
-    %                      - (s.Md / s.MY) * s.Sine_PitchAngle * s.Q_heave ...
-    %                      + ( (1/s.MY) - (1/s.MX) ) * s.Md * s.Sine_PitchAngle * s.Cosseno_PitchAngle * y_rk(1)^2) ...
-    %                      / ( s.JJtot ...
-    %                          - ( ((s.Md * s.Cosseno_PitchAngle)^2) / s.MX) ...
-    %                          - ( ((s.Md * s.Sine_PitchAngle)^2) / s.MY)  ) ...
-    %                      + s.PNoisePitchAngle_Ddot ; 
-    %                      (1/s.MX) * ( s.Q_surge + s.Md * s.Sine_PitchAngle * y_rk(1)^2 ...
-    %                      - s.Md * s.Cosseno_PitchAngle * s.PitchAngle_Ddot ) ...
-    %                      + s.PNoiseSurge_Ddot;
-    %                      (1/s.MY) * ( s.Q_heave - s.Md * s.Cosseno_PitchAngle * y_rk(1)^2 ...
-    %                      - s.Md * s.Sine_PitchAngle * s.PitchAngle_Ddot ) ...
-    %                      + s.PNoiseHeave_Ddot];
-    % %
-    % s.krk1 = s.dy_rk(s.yrk); % s.krk1 = dy = dy1 = f(y)
-    % s.krk2 = s.dy_rk(s.yrk + 0.5 * s.dt * s.krk1); % s.krk2 = dy2 = f(y+dt*s.krk1)
-    % s.krk3 = s.dy_rk(s.yrk + 0.5 * s.dt * s.krk2); % s.krk3 = dy3 = f(y+dt*s.krk2)
-    % s.krk4 = s.dy_rk(s.yrk + s.dt * s.krk3); % s.krk4 = dy4 = f(y+dt*s.krk3)
-    % 
-    % s.yrk = s.yrk + (s.dt / 6) * (s.krk1 + 2 * s.krk2 + 2 * s.krk3 + s.krk4); % Updating the state with the integration result        
-    % s.xkm_solver = [s.yrk(1);s.yrk(2);s.yrk(3)]; % Updating final values in the system
-    % s.yrk = [s.PitchAngle_dot; s.Surge_dot; s.Heave_dot]; % Initial solution
-    % s.PitchAngle_dot = s.yrk(1) ; % Updating 
-    % s.Surge_dot = s.yrk(2) ; % Updating
-    % s.Heave_dot = s.yrk(3) ; % Updating
-
-
-
-    if any(isnan(s.PitchAngle_Ddot)) || any(isinf(s.PitchAngle_Ddot))
-        fprintf('Parando simulação: valor inválido detectado em t = %.3f segundos.\n', t);
-        % pause;  % Interrompe execução e abre prompt
-    end
-
-    if any(isnan(s.Surge_Ddot)) || any(isinf(s.Surge_Ddot))
-        fprintf('Parando simulação: valor inválido detectado em t = %.3f segundos.\n', t);
-        % pause;  % Interrompe execução e abre prompt
-    end
-
-    if any(isnan(s.Heave_Ddot)) || any(isinf(s.Heave_Ddot))
-        fprintf('Parando simulação: valor inválido detectado em t = %.3f segundos.\n', t);
-        % pause;  % Interrompe execução e abre prompt
-    end    
-
-
-
     % ----- Updating and Packaging values ​​for the Simulation Integrator Input ------
     who.dy = 'First time derivative of the state variables.'; 
     s.dy(15) = s.Surge_dot ; % Updating
@@ -1968,23 +1849,6 @@ elseif strcmp(action, 'logical_instance_12')
     s.dy(20) = s.Heave_Ddot ; % Updating   
     s.dy(23) = s.PitchAngle_dot ; % Updating 
     s.dy(24) = s.PitchAngle_Ddot ; % Updating 
-    % if it < 11     
-    %     s.dy(15) = min(max(  s.Surge_dot , -0.25 ),  0.25 ) ; % Updating
-    %     s.dy(16) = min(max(  s.Surge_Ddot , -5e-03 ), 5e-03 ) ; % Updating 
-    %     s.dy(19) = min(max(  s.Heave_dot , -0.5 ), 0.5 ) ; % Updating
-    %     s.dy(20) = min(max(  s.Heave_Ddot , -5e-02 ), 5e-02 ) ; % Updating   
-    %     s.dy(23) = min(max(  s.PitchAngle_dot , -1e-03 ),  1e-03 ) ; % Updating 
-    %     s.dy(24) = min(max(  s.PitchAngle_Ddot , -1e-04 ),  1.5e-04 ) ; % Updating       
-    % else
-    %     s.dy(15) = s.Surge_dot ; % Updating
-    %     s.dy(16) = s.Surge_Ddot ; % Updating 
-    %     s.dy(19) = s.Heave_dot ; % Updating
-    %     s.dy(20) = s.Heave_Ddot ; % Updating   
-    %     s.dy(23) = s.PitchAngle_dot ; % Updating 
-    %     s.dy(24) = s.PitchAngle_Ddot ; % Updating           
-    % end
-
-
 
     if s.Option04f3 == 2
         % Tower Kinematics (Xt computed from platform motion)
@@ -1998,7 +1862,14 @@ elseif strcmp(action, 'logical_instance_12')
         %
     end
 
+        %##### ADJUSTING TO THE TOWER DYNAMICS MODEL #####
+        % Note: Note: Adjust these parameters for use in the dynamics 
+        % of the tower top movement, according to the models by Jonkman 
+        % (2008) and Abbas (2022). I have assigned any values for now, 
+        % as this will be future work and will be adjusted and validated
+        % in future versions (if any).
 
+        
     % --- INERTIA AND COUPLED MASS ---
     who.I_mass = 'The total inertial in all DOF considered and associated with wind turbine and offshore assembly mass, in [kg·m²]';
     s.I_mass = s.JJtot;

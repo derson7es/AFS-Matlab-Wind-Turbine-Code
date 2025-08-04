@@ -4,9 +4,9 @@ function System_WavesCurrentsIEC614001_3(action)
 
 % ABOUT AUTHOR:
 % Code developed by Anderson Francisco Silva, a student at the University 
-% of São Paulo, in defense of his master's degree in Naval and Oceanic 
-% Engineering in 2025. Reviewed and supervised by Professor Dr. Helio 
-% Mitio Morishita. Code developed in Matlab 2022b.
+% of São Paulo, in defense of his master's degree in Naval and Ocean 
+% Engineering in 2025. Master's dissertation title: Control of wind turbine 
+% based on effective wind speed estimation / Silva, Anderson Francisco -- São Paulo, 2025.
 
 % ABOUT UPDATES AND VERSIONS:
 % Code Version: This code is in version 04 of August 2025.
