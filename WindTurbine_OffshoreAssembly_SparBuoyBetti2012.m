@@ -875,7 +875,7 @@ elseif strcmp(action, 'logical_instance_06')
         % conditions, such as head seas or following seas, or by accelerations
         % imparted by the aerodynamic thrust force on the wind turbine rotor.
     who.PNoiseSurge_Ddot = 'Process noise of dynamics of surge, in [rad/s^2]';
-    if (s.Option04f1 == 1) 
+    if (s.Option04f1 == 2) 
         % Comparison tests        
         s.PNoiseSurge_Ddot = s.PNoiseSurge_Ddot_comp(it);    
     else
@@ -899,7 +899,7 @@ elseif strcmp(action, 'logical_instance_06')
         % from crosswinds, wave-induced motion, or other environmental factors
         % acting perpendicular to the turbine's longitudinal axis.
     who.PNoiseSway_Ddot = 'Process noise of dynamics of sway, in [rad/s^2]';
-    if (s.Option04f1 == 1) 
+    if (s.Option04f1 == 2) 
         % Comparison tests
         s.PNoiseSway_Ddot = s.PNoiseSway_Ddot_comp(it);    
     else
@@ -922,7 +922,7 @@ elseif strcmp(action, 'logical_instance_06')
         % Motion (up and down) induced by wave elevations, buoyant forces, or
         % vertical aerodynamic pressures acting on the wind turbine structure.
     who.PNoiseHeave_Ddot = 'Process noise of dynamics of heave, in [rad/s^2]';
-    if (s.Option04f1 == 1) 
+    if (s.Option04f1 == 2) 
         % Comparison tests        
         s.PNoiseHeave_Ddot = s.PNoiseHeave_Ddot_comp(it);    
     else
@@ -946,7 +946,7 @@ elseif strcmp(action, 'logical_instance_06')
         % port/starboard rolling) caused by uneven wave forces, asymmetric
         % aerodynamic loads, or dynamic coupling with sway and heave.
     who.PNoiseRollAngle_Ddot = 'Process noise of dynamics of roll, in [rad/s^2]';
-    if (s.Option04f1 == 1) 
+    if (s.Option04f1 == 2) 
         % Comparison tests        
         s.PNoiseRollAngle_Ddot = s.PNoiseRollAngle_Ddot_comp(it);    
     else
@@ -981,7 +981,7 @@ elseif strcmp(action, 'logical_instance_06')
         % pitching) resulting from wave action, varying aerodynamic thrust on
         % the rotor, or changes in the center of mass due to operational loads.
     who.PNoisePitchAngle_Ddot = 'Process noise of dynamics of pitch, in [rad/s^2]';
-    if (s.Option04f1 == 1) 
+    if (s.Option04f1 == 2) 
         % Comparison tests        
         s.PNoisePitchAngle_Ddot = s.PNoisePitchAngle_Ddot_comp(it);    
     else
@@ -1015,7 +1015,7 @@ elseif strcmp(action, 'logical_instance_06')
         % caused by wind direction shifts, aerodynamic torques, or operational
         % adjustments made by the control system to align the rotor with the wind.
     who.PNoiseYawAngle_Ddot = 'Process noise of dynamics of yaw, in [rad/s^2]';
-    if (s.Option04f1 == 1) 
+    if (s.Option04f1 == 2) 
         % Comparison tests        
         s.PNoiseYawAngle_Ddot = s.PNoisePitchAngle_Ddot_comp(it);    
     else
