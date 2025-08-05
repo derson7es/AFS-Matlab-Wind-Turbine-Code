@@ -72,3 +72,70 @@ It's important to note that the code uses theory from other works, including the
 Thank you for reading this far and enjoy using the code.
 
 Jesus loves you!
+
+%------------------------
+% ---------- About the files --------------
+******** THE FILES ********
+
+>> File f01 "EnviromentSimulation" This file that runs everything (user interface) and 
+contains all functions of the simulation environment of a wind turbine.
+
+>> File f02 "WindTurbine" represent the wind turbine (system), organize the sub functions 
+that will represent the wind turbine components, the disturbances applied to the system, 
+its response (simulation integrator output), the sensors, the data and characteristics 
+of the dynamics related to the efforts and interactions involving the wind turbine.
+
+>> File f02 extra "WindTurbineData_NREL5MW" or "WindTurbineData_IEA15MW" or "WindTurbineData_DTU10MW" 
+contains all the wind turbine data.
+
+>> File f03 "WindTurbine_MainAssembly" contains almost all functions of the dynamics of 
+the models related to the wind turbine components, such as tower, rotor, drive train and nacelle.
+
+>> File f04 "WindTurbine_OffshoreAssembly_SparBuoyBetti2012" or "WindTurbine_OffshoreAssembly_SparBuoy"
+ or "WindTurbine_OffshoreAssembly_SubmersiblePlatform" or "WindTurbine_OffshoreAssembly_BargePlatform"
+ or  "WindTurbine_MainAssembly" contains simulation environment for offshore wind turbine.
+
+>> File f05 "System_LoadsAerodynamics" contains all the functions of the simulation environment
+ for the aerodynamic loads applied to the rotor. Besides contains the respective approach to
+ generate the power, torque, and thrust coefficients.
+
+>> File f06 "System_WindFieldIEC614001" represents the simulation environment that generates 
+the wind signal chosen, through the "Option03f1" option, which can be a deterministic or 
+stochastic signal. Deterministic wind signals are constant winds, linearly increasing and 
+decreasing, series steps and sinusoidal. The stochastic signal, on the other hand, is a
+ turbulent wind signal generated from the Veers method or by Transfer Functions, to later
+ obtain the effective wind speed from this signal. Also for stochastic signals, it is also
+ possible to add the rotation effect to the wind signal to include the frequencies related
+ to the blades passing through a fixed point.
+
+>> File f07 "System_WavesCurrentsIEC614001_3" contains all the functions of the simulation
+ environment to generate the effects of sea waves and currents, according to the modeling of the IEC 61400-1-3 standard
+
+>> File f08 "PIGainScheduledTSR_Abbas2022"  or "PIGainScheduledOTC_Jonkman2009" contains 
+the approach related to the control system and its actuators.
+
+>> File f09 "EWSEstimator_KalmanFilterTorqueEstimator" or "ExtendedKalmanFilterOnlineEWSEstimator" 
+contains the approach related to the problem of estimating state variables and parameters
+
+
+The code logic is that the simulation flow will first obtain the selected options (Logic Instances 01)
+ from all files. Then it will calculate all known values or those that can be defined offline
+ (preprocessing), which by default would pass through all Logic Instances 02 of all files. Once 
+this is done, it returns to the main function (EnvironmentSimulation) and begins the simulation 
+on Logic Instances 03. The numerical integrator is triggered to begin solving the ODEs from the 
+initial conditions. The integrator calls the system (WindTurbine), which interacts with other files 
+(Logic Instances of components/dynamics and wind and sea, controllers, and state observers). After
+ completing an iteration (each dt), the obtained values must be saved and the new iteration begins
+ again until the defined "tf" time.
+
+Each file contains a logical instance for plotting and analyzing the results. Since these are 
+logical instances, you can call them from anywhere, but in EnvironmentSimulation, there's a 
+dedicated location for this.
+
+That's it for now, and then a report will be created to provide more information. Everything is 
+written (albeit exaggeratedly) to help you get there.
+
+
+>> Test: Start with "EnvironmentSimulation," play the simulation, and debug to better understand the
+ simulation flow. The files saved as is in the repository, with the options defined, will
+ generate the simulation of an offshore wind turbine under turbulent winds of 15 m/s on average.
