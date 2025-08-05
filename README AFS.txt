@@ -46,8 +46,7 @@ A simple manual explaining how to use all the code options will be added soon.
 The main objective of this code was to support the simulations performed in the
  work: 
 
-Control of wind turbine based on effective wind speed estimation / Silva, Anderson Francisco -- São Paulo, 2025.
-
+Control of wind turbine based on effective wind speed estimation / A. F. da Silva -- versão corr. -- São Paulo, 2025.
 
 Please use this example to cite this code:
 
