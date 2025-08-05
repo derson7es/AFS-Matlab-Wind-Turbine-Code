@@ -51,18 +51,17 @@ Control of wind turbine based on effective wind speed estimation / Silva, Anders
 
 Please use this example to cite this code:
 
-SILVA, A. F. AFS Matlab Wind Turbine Code. [S.l.], 2025. Available at: GitHub. Available
-from Internet: <https://github.com/derson7es/AFS-Matlab-Wind-Turbine-Code.git>. 
+SILVA, A. F. da. AFS Matlab Wind Turbine Code. [S.l.], 2025. Available at: GitHub. Available from Internet: <https://github.com/derson7es/AFS-Matlab-Wind-Turbine-Code.git>. Cited in page 42.
 
 Or in latex language, it would be:
 
 @techreport{silva2025afs,
   title        = {AFS Matlab Wind Turbine Code},
-  author       = {Silva, Anderson Francisco},
+  author       = {da Silva, Anderson Francisco},
   institution  = {Department of Naval and Ocean Engineering, University of São Paulo},
   year         = {2025},
   url          = {https://github.com/derson7es/AFS-Matlab-Wind-Turbine-Code.git},
-  note         = {Disponível em: GitHub}
+  note         = {Available at: GitHub}
 }
 
 
