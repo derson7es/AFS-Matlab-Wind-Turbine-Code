@@ -141,7 +141,7 @@ if strcmp(action, 'logical_instance_01')
     who.Option04f1.choose_01 = 's.Option04f1 == 1 to choose to Generate a Wave signal the spectrum (JONSWAP or Pierson-Moskowitz) and in accordance with the IEC 61400-3 standard.';
     who.Option04f1.choose_02 = 's.Option04f1 == 2 to choose to Load a desired Wave signal from a file.';
         % Choose your option:
-    s.Option04f1 = 2;
+    s.Option04f1 = 1;
     if s.Option04f1 == 1 || s.Option04f1 == 2
         SimulationEnvironment.s.Option04f1 = s.Option04f1;
     else
