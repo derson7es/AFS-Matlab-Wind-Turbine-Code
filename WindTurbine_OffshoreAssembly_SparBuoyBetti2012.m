@@ -620,6 +620,61 @@ elseif strcmp(action, 'logical_instance_03')
         title('Wave Particle Acceleration at point BS over time')
         legend('a_x (longitudinal)','a_y (transversal)','a_z (vertical)','Location','best')
         %
+
+        % Plot Velocity at point BS over time
+        figure;
+        plot(s.Time_ws, Vwa_iu_BS_t, 'b', ...
+            s.Time_ws, Vwa_iv_BS_t, 'g:', ...
+            s.Time_ws, Vwa_iw_BS_t, 'r--')
+        grid off
+        xlabel('Time [s]')
+        xlim([0 max(s.Time_ws)]);
+        ylabel('Velocity [m/s]')
+        ylim([1.05*min([Vwa_iu_BS_t Vwa_iv_BS_t Vwa_iw_BS_t]), 1.05*max([Vwa_iu_BS_t Vwa_iv_BS_t Vwa_iw_BS_t])]);
+        title('Wave Particle Velocity at point BS over time')
+        legend('v_u (longitudinal)','v_v (transversal)','v_w (vertical)','Location','best')
+        %
+
+        % Plot Acceleration at point BS over time
+        figure;
+        plot(s.Time_ws, Awa_iu_BS_t, 'b', ...
+            s.Time_ws, Awa_iv_BS_t, 'g:', ...
+            s.Time_ws, Awa_iw_BS_t, 'r--')
+        grid off
+        xlabel('Time [s]')
+        xlim([0 max(s.Time_ws)]);
+        ylabel('Acceleration [m/s²]')
+        ylim([1.05*min([Awa_iu_BS_t Awa_iv_BS_t Awa_iw_BS_t]), 1.05*max([Awa_iu_BS_t Awa_iv_BS_t Awa_iw_BS_t])]);
+        title('Wave Particle Acceleration at point BS over time')
+        legend('a_u (longitudinal)','a_v (transversal)','a_w (vertical)','Location','best')
+        %
+
+        % Plot Velocity Profile over Depth        
+        figure;
+        plot(s.Vwa_iu, s.WaterDepthVector_i, 'b', ...
+            s.Vwa_iv, s.WaterDepthVector_i, 'g:', ...
+            s.Vwa_iw, s.WaterDepthVector_i, 'r--')
+        grid off
+        xlabel('Velocity [m/s]')
+        xlim([0.95*min([s.Vwa_iu s.Vwa_iv s.Vwa_iw -0.25*abs(max([s.Vwa_iu s.Vwa_iv s.Vwa_iw]))]) 1.05*max([s.Vwa_iu s.Vwa_iv s.Vwa_iw])]);
+        ylabel('Depth [m]')
+        ylim([1.0312*min(s.WaterDepthVector_i), 0]);
+        title('Wave Particle Velocity Profile over Depth')
+        legend('u (long.)','v (transv.)','w (vert.)','Location','best')
+        
+        % Plot Acceleration Profile over Depth        
+        figure;
+        plot(s.Awa_iu, s.WaterDepthVector_i, 'b', ...
+            s.Awa_iv, s.WaterDepthVector_i, 'g:', ...
+            s.Awa_iw, s.WaterDepthVector_i, 'r--')
+        grid off
+        xlabel('Acceleration [m/s²]')
+        xlim([0.95*min([s.Awa_iu s.Awa_iv s.Awa_iw]) 1.05*max([s.Awa_iu s.Awa_iv s.Awa_iw +0.25*abs(min([s.Awa_iu s.Awa_iv s.Awa_iw]))])]);
+        ylabel('Depth [m]')
+        ylim([1.0312*min(s.WaterDepthVector_i), 0]);
+        title('Wave Particle Acceleration Profile over Depth')
+        legend('a_u','a_v','a_w','Location','best') 
+        %
     end
 
 
