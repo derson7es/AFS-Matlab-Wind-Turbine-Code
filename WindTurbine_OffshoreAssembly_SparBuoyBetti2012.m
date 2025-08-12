@@ -96,13 +96,12 @@ if strcmp(action, 'logical_instance_01')
     end
 
 
-
     % Assign value to variable in specified workspace
     assignin('base', 's', s);
     assignin('base', 'who', who);
 
 
-    
+
     % Calling the next logic instance     
     System_WavesCurrentsIEC614001_3;
 
