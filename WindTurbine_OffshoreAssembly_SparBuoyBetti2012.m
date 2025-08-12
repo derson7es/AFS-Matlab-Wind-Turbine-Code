@@ -82,11 +82,27 @@ if strcmp(action, 'logical_instance_01')
     end
 
 
+    % --- Option 02: Add decay term to kinematics model ----
+    who.Option02f4.Option_01 = 'Option 02 of Recursive Function f4';
+    who.Option02f4.about = 'Add decay term to kinematics model';
+    who.Option02f4.choose_01 = 'Option02f4 == 1 to choose Add decay term to kinematics model.';
+    who.Option02f4.choose_02 = 'Option02f4 == 2 to choose DO NOT Add decay term to kinematics model.';
+        % Choose your option:
+    s.Option02f4 = 2; 
+    if s.Option02f4 == 1 || s.Option02f4 == 2
+        OffshoreAssembly.Option02f4 = s.Option02f4;
+    else
+        error('Invalid option selected for s.Option02f4. Please choose 1 or 2.');
+    end
+
+
+
     % Assign value to variable in specified workspace
     assignin('base', 's', s);
     assignin('base', 'who', who);
 
 
+    
     % Calling the next logic instance     
     System_WavesCurrentsIEC614001_3;
 
@@ -522,7 +538,10 @@ elseif strcmp(action, 'logical_instance_03')
             Phi_n = s.Phi_wa_n(n);
             theta_n = s.Theta_wa_n(n);
             A_n = s.An_wa(n);
-            A_n = A_n * exp(-kn * abs(z));  % aplicação suave por profundidade
+            if s.Option02f4 == 1
+                % Add decay term to kinematics model
+                A_n = A_n * exp(-kn * abs(z));  % Smooth application by depth.
+            end
             phase_t = (omega_n * s.Time_ws) - (kn * s.Xwa_i + Phi_n);
             s.phase_wa(n,:) = phase_t;
 
@@ -541,9 +560,13 @@ elseif strcmp(action, 'logical_instance_03')
             Fcosh = cosh(kn * (h + z)) / denom_sinh;
             Fsinh = sinh(kn * (h + z)) / denom_sinh;
            
-            DepthDamping = exp(-kn * abs(z));  % ou usar tanh para suavizar
-            Fcosh = Fcosh * DepthDamping;
-            Fsinh = Fsinh * DepthDamping;
+            if s.Option02f4 == 1
+                % Add decay term to kinematics model
+                DepthDamping = exp(-kn * abs(z));  % ou usar tanh para suavizar
+                Fcosh = Fcosh * DepthDamping;
+                Fsinh = Fsinh * DepthDamping;
+            end
+                                  
 
             % Phase components
             cos_ph = cos(phase_t);
